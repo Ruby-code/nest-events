@@ -5,7 +5,7 @@ import { Teacher } from "src/school/teacher.entity";
 import { User } from "src/auth/user.entity";
 import { Attendee } from "src/events/attendee.entity";
 import { Event } from "src/events/event.entity";
-import { UserEntity } from "src/userentity";
+import { Profile } from "src/auth/profile.entity";
 
 
 export default registerAs(
@@ -17,7 +17,7 @@ export default registerAs(
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Teacher,Subject,User, Attendee, Event, UserEntity],
+    entities: [Teacher,Subject,User, Attendee, Event, Profile],
     synchronize: true
 })
  );

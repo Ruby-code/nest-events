@@ -9,8 +9,11 @@ export class AuthService{
         private readonly jwtService: JwtService,
     ){}
 
-    public getTokenForUser(user: User){
-        const details = { username: user.username, sub: user.id }
+     getTokenForUser(user: User){
+        const details = { 
+            username: user.username, 
+            sub: user.id
+         }
         return this.jwtService.sign( details);
     }
 

@@ -5,9 +5,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthGuardJwt } from "./auth-guard.jwt";
 import { AuthGuardLocal } from "./auth-guard.local";
 import { AuthController } from "./auth.controller";
+// import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./jwt.strategy";
 import { LocalStrategy } from "./localStrategy";
+import { SessionSerializer } from "./session.serializer";
 import { User } from "./user.entity";
 import { UsersController } from "./users.controllers";
 
@@ -27,15 +29,15 @@ import { UsersController } from "./users.controllers";
     // })
     JwtModule.registerAsync({
       useFactory: () => ({
-        secret: process.env.AUTH_SECRET,
-        // secret: "secret123",
+        // secret: process.env.AUTH_SECRET,
+        secret: "secret123",
         signOptions:{
           expiresIn: '1000s'
         }
       })
     })
 ],
-    providers: [LocalStrategy,JwtStrategy,AuthService, AuthGuardJwt, AuthGuardLocal],
-    controllers:[AuthController, UsersController]
+    providers: [LocalStrategy,JwtStrategy,AuthService, AuthGuardJwt, AuthGuardLocal, SessionSerializer],
+    controllers:[ UsersController, AuthController]
 })
 export class AuthModule{}
