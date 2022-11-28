@@ -2,17 +2,24 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { User } from 'src/auth/user.entity';
 import { Attendee } from './attendee.entity';
+import { AttendeesService } from './attendees.service';
+import { CurrentUserEventAttendanceController } from './current-user-event-attendance.controller';
+import { EventAttendeesController } from './event-attendees.controller';
 import { Event } from './event.entity';
+import { EventsOrganizedByUserController } from './events-organized-by-user.controller';
 import { EventsController } from './events.controller';
 import { EventsService } from './events.service';
 
 @Module({
     imports: [
-       TypeOrmModule.forFeature([Event]),
-       TypeOrmModule.forFeature([Attendee]),
+       TypeOrmModule.forFeature([Event, Attendee]),
     ],
-    controllers: [EventsController],
-    providers: [ EventsService
+    controllers: [EventsController,
+    CurrentUserEventAttendanceController,
+    EventAttendeesController,
+    EventsOrganizedByUserController
+],
+    providers: [ EventsService, AttendeesService
         // {
         //     provide: 'Events_Service',
         //     useClass: EventsService,
